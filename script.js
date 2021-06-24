@@ -10,9 +10,9 @@ function writePassword() {
 
 }
 
-function lengthPrompt(){
+function initialPrompt(){
   var length = 0;
-  var meetsConditions = false;
+  var conditionSatisfied = false;
 
   do {
     length = prompt("How many characters would you like your password to contain?", "Must be a minimum of 8 to maximum of 128 characters");
@@ -20,47 +20,47 @@ function lengthPrompt(){
     if (length === null) {
       break;
      } else if (length >= 8 && length <= 128) {
-              meetsConditions = true;
+              conditionSatisfied = true;
             }
-} while (!meetsConditions);
+} while (!conditionSatisfied);
 
   return length;
 }
 
-function charTypePrompt() {
-  var charTypes;
-  var meetsConditions = false;
+function characterPrompt() {
+  var typeOfCharacter;
+  var conditionSatisfied = false;
   var types = ["lowercase", "uppercase", "numeric", "special"];
 
   do {
-    charTypes = prompt("At a minimum, choose one of four character types for your password:", "lowercase," + 
+    typeOfCharacter = prompt("At a minimum, choose one of four character types for your password:", "lowercase," + 
     " uppercase, numeric, and/or special");
 
-    charTypes = charTypes.toLowerCase();
-    if (charTypes === null) {
+    typeOfCharacter = typeOfCharacter.toLowerCase();
+    if (typeOfCharacter === null) {
       break;
     }
 
     for (var i = 0; i< types.length; i++) {
-      if (!charTypes.includes(types[i])) {
+      if (!typeOfCharacter.includes(types[i])) {
         types.splice(i, 1);
         i--;
       }
     }
 
     if (types.length !== 0){
-      meetsConditions = true;
+      conditionSatisfied = true;
     } else {
       types = ["lowercase", "uppercase", "numeric", "special"];
     }
 
-  } while (!meetsConditions)
+  } while (!conditionSatisfied)
 
   return types;
 }
 function generatePassword() {
-  var length = lengthPrompt();
-  var types = charTypePrompt();
+  var length = initialPrompt();
+  var types = characterPrompt();
   console.log(types);
 }
 
