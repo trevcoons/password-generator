@@ -10,27 +10,30 @@ function writePassword() {
 
 }
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
 function initialPrompt(){
-  var length = 0;
+  var characterLength = 0;
   var conditionSatisfied = false;
 
   do {
-    length = prompt("How many characters would you like your password to contain?", "Must be a minimum of 8 to maximum of 128 characters");
+    characterLength = prompt("How many characters would you like your password to contain?", "Must be a minimum of 8 to maximum of 128 characters");
 
-    if (length === null) {
+    if (characterLength === null) {
       break;
-     } else if (length >= 8 && length <= 128) {
+     } else if (characterLength >= 8 && characterLength <= 128) {
               conditionSatisfied = true;
             }
 } while (!conditionSatisfied);
 
-  return length;
+  return characterLength;
 }
 
-function characterPrompt() {
+function secondPrompt() {
   var typeOfCharacter;
   var conditionSatisfied = false;
-  var types = ["lowercase", "uppercase", "numeric", "special"];
+  var characterTypes = ["lowercase", "uppercase", "numeric", "special"];
 
   do {
     typeOfCharacter = prompt("At a minimum, choose one of four character types for your password:", "lowercase," + 
@@ -41,28 +44,24 @@ function characterPrompt() {
       break;
     }
 
-    for (var i = 0; i< types.length; i++) {
-      if (!typeOfCharacter.includes(types[i])) {
-        types.splice(i, 1);
+    for (var i = 0; i< characterTypes.characterLength; i++) {
+      if (!typeOfCharacter.includes(characterTypes[i])) {
+        characterTypes.splice(i, 1);
         i--;
       }
     }
 
-    if (types.length !== 0){
+    if (characterTypes.characterLength !== 0){
       conditionSatisfied = true;
     } else {
-      types = ["lowercase", "uppercase", "numeric", "special"];
+      characterTypes = ["lowercase", "uppercase", "numeric", "special"];
     }
 
   } while (!conditionSatisfied)
 
-  return types;
+  return characterTypes;
 }
 function generatePassword() {
-  var length = initialPrompt();
-  var types = characterPrompt();
-  console.log(types);
+  var characterLength = initialPrompt();
+  var characterTypes = secondPrompt();
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
