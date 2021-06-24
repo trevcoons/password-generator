@@ -29,3 +29,20 @@ function lengthPrompt(){
 
   return length;
 }
+
+function charTypePrompt() {
+  var charTypes;
+  var meetsConditions = false;
+  var types = ["lowercase", "uppercase", "numeric", "special"];
+
+  do {
+    charTypes = prompt("At a minimum, choose one of four character types for your password:", "lowercase," + 
+    " uppercase, numeric, and/or special");
+
+    charTypes = charTypes.toLowerCase();
+    if (charTypes === null) {
+      break;
+    }
+
+    
+}
