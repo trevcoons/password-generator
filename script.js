@@ -10,15 +10,12 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
 function lengthPrompt(){
   var length = 0;
   var meetsConditions = false;
 
   do {
-    length = prompt("How many characters would you like your password to contain?", "Length must be 8 to 128 characters");
+    length = prompt("How many characters would you like your password to contain?", "Must be a minimum of 8 to maximum of 128 characters");
 
     if (length === null) {
       break;
@@ -44,5 +41,28 @@ function charTypePrompt() {
       break;
     }
 
-    
+    for (var i = 0; i< types.length; i++) {
+      if (!charTypes.includes(types[i])) {
+        types.splice(i, 1);
+        i--;
+      }
+    }
+
+    if (types.length !== 0){
+      meetsConditions = true;
+    } else {
+      types = ["lowercase", "uppercase", "numeric", "special"];
+    }
+
+  } while (!meetsConditions)
+
+  return types;
 }
+function generatePassword() {
+  var length = lengthPrompt();
+  var types = charTypePrompt();
+  console.log(types);
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
