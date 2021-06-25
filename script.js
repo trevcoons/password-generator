@@ -61,6 +61,40 @@ function secondPrompt() {
 
   return characterTypes;
 }
+
+function listPassword(characterLength, characterTypes) {
+  var password = "";
+  var characterTypes = {
+    letterCharacter: "abcdefghijklmnopqrstuvwxyz",
+    numberCharacter: "0123456789";
+    specialCharacter: "+_)(*&^%$#@!~|}{\][';:?></.,-="
+  };
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function generatePassword() {
   var characterLength = initialPrompt();
   var characterTypes = secondPrompt();
