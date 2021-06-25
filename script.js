@@ -10,9 +10,6 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
 function initialPrompt(){
   var characterLength = 0;
   var conditionSatisfied = false;
@@ -38,20 +35,20 @@ function secondPrompt() {
   do {
     typeOfCharacter = prompt("At a minimum, choose one of four character types for your password:", "lowercase," + 
     " uppercase, numeric, and/or special");
-
+    console.log(typeOfCharacter)
     typeOfCharacter = typeOfCharacter.toLowerCase();
     if (typeOfCharacter === null) {
       break;
     }
 
-    for (var i = 0; i< characterTypes.characterLength; i++) {
+    for (var i = 0; i < characterTypes.length; i++) {
       if (!typeOfCharacter.includes(characterTypes[i])) {
         characterTypes.splice(i, 1);
         i--;
       }
     }
 
-    if (characterTypes.characterLength !== 0){
+    if (characterTypes.length !== 0){
       conditionSatisfied = true;
     } else {
       characterTypes = ["lowercase", "uppercase", "numeric", "special"];
@@ -62,40 +59,44 @@ function secondPrompt() {
   return characterTypes;
 }
 
-function listPassword(characterLength, characterTypes) {
+function createPassword(characterLength, characterTypes) {
   var password = "";
-  var characterTypes = {
+  var charTypes = {
     letterCharacter: "abcdefghijklmnopqrstuvwxyz",
-    numberCharacter: "0123456789";
+    numberCharacter: "0123456789",
     specialCharacter: "+_)(*&^%$#@!~|}{\][';:?></.,-="
   };
 
+  var stringC = "";
+  if (characterTypes.includes("lowercase")) {
+    stringC += charTypes["letterCharacter"];
+  }
+  if (characterTypes.includes("uppercase")) {
+    stringC += charTypes["letterCharacter"].toUpperCase();
+  }
+  if (characterTypes.includes("numeric")) {
+    stringC += charTypes["numberCharacter"];
+  }
+  if (characterTypes.includes("special")) {
+    stringC += charTypes["specialCharacter"]
+  }
+  console.log(stringC);
+  var randomize;
+
+  for (var i = 0; i < characterLength; i++) {
+    randomize = Math.floor(Math.random() * stringC.length);
+
+    password += stringC.charAt(randomize);
+  }
+  return password;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function generatePassword() {
   var characterLength = initialPrompt();
   var characterTypes = secondPrompt();
+
+  return createPassword(characterLength, characterTypes);
 }
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
